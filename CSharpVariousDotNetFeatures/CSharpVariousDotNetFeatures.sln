@@ -5,7 +5,9 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HealthChecks", "HealthChecks\HealthChecks.csproj", "{8A5A0FA6-4A4B-4C2D-9DA6-6D2E41D81BD4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RateLimiting", "RateLimiting\RateLimiting.csproj", "{E43B30A8-FC85-4C89-B45A-17830F982B2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RateLimiting", "RateLimiting\RateLimiting.csproj", "{E43B30A8-FC85-4C89-B45A-17830F982B2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PDFGeneration", "PDFGeneration\PDFGeneration.csproj", "{60B6F69E-E9AF-4700-84F8-51649FB0219D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E43B30A8-FC85-4C89-B45A-17830F982B2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E43B30A8-FC85-4C89-B45A-17830F982B2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E43B30A8-FC85-4C89-B45A-17830F982B2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60B6F69E-E9AF-4700-84F8-51649FB0219D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60B6F69E-E9AF-4700-84F8-51649FB0219D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60B6F69E-E9AF-4700-84F8-51649FB0219D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60B6F69E-E9AF-4700-84F8-51649FB0219D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
