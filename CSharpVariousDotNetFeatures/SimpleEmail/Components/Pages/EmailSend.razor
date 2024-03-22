@@ -1,0 +1,41 @@
+﻿@page "/emailsend"
+@using MailKit.Net.Smtp
+@using MimeKit
+@rendermode InteractiveServer
+
+<h1>Simple Email sender using Mailkit</h1>
+
+<p role="status">Test Emails sent this session: @emailsSent</p>
+
+<button class="btn btn-primary" @onclick="SendEmail">Send Test Email</button>
+
+@code {
+    //Youtube link for reference.
+    //https://www.youtube.com/watch?v=PvO_1T0FS_A
+
+    int emailsSent = 0;
+    string username = "norene.powlowski25@ethereal.email";
+    string password = "JuHb1nVyZf9j2QVxBh";
+    string host = "smtp.ethereal.email";
+    int port = 587;
+
+    private void SendEmail()
+    {
+        emailsSent++;
+
+        var email = new MimeMessage();
+        email.From.Add(MailboxAddress.Parse(username));
+        email.To.Add(MailboxAddress.Parse(username));
+        email.Subject = "Test Email Subject";
+        email.Body = new TextPart(MimeKit.Text.TextFormat.Html)
+        {
+            Text = $"Email # {emailsSent} sent on {DateTime.Now.ToString("MM/dd/yyyy")} at {DateTime.Now.ToString("H:mm:ss")}"
+        };
+
+        using var smtp = new SmtpClient();
+        smtp.Connect(host, port, MailKit.Security.SecureSocketOptions.StartTls);
+        smtp.Authenticate(username, password);
+        smtp.Send(email);
+        smtp.Disconnect(true);
+    }
+}
