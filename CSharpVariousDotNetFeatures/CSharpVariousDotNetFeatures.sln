@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleAPI", "SimpleAPI\Simp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logging", "Logging\Logging.csproj", "{5150D40D-445E-416D-BD8A-1E1CD9D7289D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleEmail", "SimpleEmail\SimpleEmail.csproj", "{7558B54C-9677-4DBD-BB93-7B8597A8018A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{5150D40D-445E-416D-BD8A-1E1CD9D7289D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5150D40D-445E-416D-BD8A-1E1CD9D7289D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5150D40D-445E-416D-BD8A-1E1CD9D7289D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7558B54C-9677-4DBD-BB93-7B8597A8018A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7558B54C-9677-4DBD-BB93-7B8597A8018A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7558B54C-9677-4DBD-BB93-7B8597A8018A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7558B54C-9677-4DBD-BB93-7B8597A8018A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
