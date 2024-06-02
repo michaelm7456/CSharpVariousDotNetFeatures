@@ -1,0 +1,18 @@
+﻿From Tim Corey's excellent videos on Containers.
+
+Intro to Docker: https://www.youtube.com/watch?v=WcQ3-M4-jik
+Containerize Your C# Application Easily with the .NET CLI: https://www.youtube.com/watch?v=bg0QVTS4Q0c
+
+1.) First, open the path under the 'ContainerizedApplication' project.
+
+2.) Next, run the below command inside your terminal/command prompt
+
+dotnet publish --os linux --arch x64 -p:PublishProfile=DefaultContainer -c Release
+
+3.) This will create your image, from which you can create a container.
+
+4.) Within Docker Desktop, you can create a new Container by clicking 'Run' for the selected 'Image' under the 'Images' area, select port '0'.
+
+5.) Once the Container is running, try navigating to the respective port number assigned by Docker to see your application running within the container.
+
+Note: In the respective .cs project file, you can specify the Container family using the <ContainerFamily> tag, in case you wish to customise/adjust this to preference.
