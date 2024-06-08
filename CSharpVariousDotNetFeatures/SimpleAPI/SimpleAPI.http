@@ -3,4 +3,7 @@
 GET {{SimpleAPI_HostAddress}}/weatherforecast/
 Accept: application/json
 
+GET {{SimpleAPI_HostAddress}}/food/
+Accept: application/json
+
 ###
