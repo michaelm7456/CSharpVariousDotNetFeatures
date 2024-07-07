@@ -1,0 +1,6 @@
+@JsonWebTokens_HostAddress = http://localhost:5162
+
+GET {{JsonWebTokens_HostAddress}}/token/
+Accept: application/json
+
+###

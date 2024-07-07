@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContainerizedApplication", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collections", "Collections\Collections.csproj", "{7D04E2C1-3C16-471F-B884-95ACE3A5534F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwaggerOpenAPIMock", "SwaggerOpenAPIMock\SwaggerOpenAPIMock.csproj", "{B0351E3D-F23C-4AC6-9436-506F9084936E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwaggerOpenAPIMock", "SwaggerOpenAPIMock\SwaggerOpenAPIMock.csproj", "{B0351E3D-F23C-4AC6-9436-506F9084936E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonWebTokens", "JsonWebTokens\JsonWebTokens.csproj", "{4129FDB5-D6DD-413B-8EEB-84F1CDEC17B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{B0351E3D-F23C-4AC6-9436-506F9084936E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0351E3D-F23C-4AC6-9436-506F9084936E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0351E3D-F23C-4AC6-9436-506F9084936E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4129FDB5-D6DD-413B-8EEB-84F1CDEC17B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4129FDB5-D6DD-413B-8EEB-84F1CDEC17B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4129FDB5-D6DD-413B-8EEB-84F1CDEC17B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4129FDB5-D6DD-413B-8EEB-84F1CDEC17B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
