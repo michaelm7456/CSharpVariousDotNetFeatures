@@ -1,0 +1,6 @@
+@HttpStatusCodeSimulator_HostAddress = http://localhost:5107
+
+GET {{HttpStatusCodeSimulator_HostAddress}}/HttpStatusCode/
+Accept: application/json
+
+###
