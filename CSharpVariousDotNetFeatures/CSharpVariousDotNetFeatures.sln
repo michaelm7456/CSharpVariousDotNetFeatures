@@ -35,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwaggerOpenAPIMock", "Swagg
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonWebTokens", "JsonWebTokens\JsonWebTokens.csproj", "{4129FDB5-D6DD-413B-8EEB-84F1CDEC17B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpStatusCodeSimulator", "HttpStatusCodeSimulator\HttpStatusCodeSimulator.csproj", "{8A26776F-CCC1-4E15-8F8E-2997BD1F1D70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HttpStatusCodeSimulator", "HttpStatusCodeSimulator\HttpStatusCodeSimulator.csproj", "{8A26776F-CCC1-4E15-8F8E-2997BD1F1D70}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PollyResilienceAndTransientFaultHandling", "PollyResilienceAndTransientFaultHandling\PollyResilienceAndTransientFaultHandling.csproj", "{38E8360B-4DB5-4BBB-9506-4F0E86645EC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,14 @@ Global
 		{8A26776F-CCC1-4E15-8F8E-2997BD1F1D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A26776F-CCC1-4E15-8F8E-2997BD1F1D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A26776F-CCC1-4E15-8F8E-2997BD1F1D70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CA1244B-234F-41C5-B196-CFC559B0068B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CA1244B-234F-41C5-B196-CFC559B0068B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CA1244B-234F-41C5-B196-CFC559B0068B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CA1244B-234F-41C5-B196-CFC559B0068B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38E8360B-4DB5-4BBB-9506-4F0E86645EC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38E8360B-4DB5-4BBB-9506-4F0E86645EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38E8360B-4DB5-4BBB-9506-4F0E86645EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38E8360B-4DB5-4BBB-9506-4F0E86645EC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
