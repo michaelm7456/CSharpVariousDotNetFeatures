@@ -16,6 +16,15 @@ namespace HttpStatusCodeSimulator.Controllers
             return "This is a 200 OK response";
         }
 
+        // Returns 200 OK, after a 10 second delay
+        [HttpGet("delay")]
+        public async Task<string> GetDelayedOk()
+        {
+            await Task.Delay(10000); // Simulating async work
+            Response.StatusCode = (int)HttpStatusCode.OK;
+            return "This is a 200 OK response";
+        }
+
         // Returns 201 Created
         [HttpPost("created")]
         public async Task<string> PostCreated()
