@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Polly;
 using Polly.Retry;
-
 namespace PollyResilienceAndTransientFaultHandling.Controllers
 {
     [ApiController]
@@ -10,12 +9,18 @@ namespace PollyResilienceAndTransientFaultHandling.Controllers
     {
         private readonly int _maxretries = 3;
         private readonly int _retryInterval = 2;
+        private readonly IHttpClientFactory _httpClientFactory;
+
+        public PollyController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClientFactory = httpClientFactory;
+        }
 
         [HttpGet(Name = "200 - Retry Once")]
-        public async Task<string> GetOk()
+        public async Task<string> GetOkUsingOldPollyRetryPolicy()
         {
             var result = new HttpResponseMessage();
-            
+
             AsyncRetryPolicy<HttpResponseMessage> retryPolicy = DefinePollyRetryOncePolicy();
 
             result = await retryPolicy.ExecuteAsync(CallAvailableAPI);
@@ -26,28 +31,43 @@ namespace PollyResilienceAndTransientFaultHandling.Controllers
         }
 
         [HttpGet(Name = "503 - Fixed Time")]
-        public async Task<string> GetServiceUnavailableErrorWithFixedTimeIntervalPolicy()
+        public async Task<string> GetServiceUnavailableErrorUsingNewPollyResiliencePipelineBuilder()
         {
-            var result = new HttpResponseMessage();
+            var httpClient = _httpClientFactory.CreateClient();
 
-            AsyncRetryPolicy<HttpResponseMessage> retryPolicy = DefinePollyWaitAndRetryWithFixedIntervalsPolicy();
+            var pipeline = new ResiliencePipelineBuilder<HttpResponseMessage>()
+                .AddRetry(new RetryStrategyOptions<HttpResponseMessage>
+                {
+                    MaxRetryAttempts = _maxretries,
+                    BackoffType = DelayBackoffType.Constant,
+                    Delay = TimeSpan.FromSeconds(_retryInterval),
+                    ShouldHandle = new PredicateBuilder<HttpResponseMessage>()
+                        .Handle<HttpRequestException>().HandleResult(result => !result.IsSuccessStatusCode),
+                    OnRetry = retryArguments =>
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"Current attempt: {retryArguments.AttemptNumber}, Failure Reason: {retryArguments.Outcome.Result.ReasonPhrase}");
+                        Console.ForegroundColor = ConsoleColor.White;
 
-            result = await retryPolicy.ExecuteAsync(CallUnavailableAPI);
+                        return ValueTask.CompletedTask;
+                    }
+                })
+                .Build();
 
-            LogResults(result);
+            var result = await pipeline.ExecuteAsync(async token => await httpClient.GetAsync("https://localhost:7118/HttpStatusCode/serviceunavailable"));
 
             return result.ReasonPhrase.ToString();
         }
 
         [HttpGet(Name = "503 - Exponential BackOff")]
-        public async Task<string> GetServiceUnavailableErrorWithExponentialBackOffPolicy()
+        public async Task<string> GetServiceUnavailableErrorUsingOldPollyExponentialBackOffPolicy()
         {
             var result = new HttpResponseMessage();
 
             AsyncRetryPolicy<HttpResponseMessage> retryPolicy = DefinePollyWaitAndRetryWithExponentialBackOffPolicy();
 
             result = await retryPolicy.ExecuteAsync(CallUnavailableAPI);
-            
+
             LogResults(result);
 
             return result.ReasonPhrase.ToString();
@@ -86,7 +106,9 @@ namespace PollyResilienceAndTransientFaultHandling.Controllers
                         sleepDurationProvider: attempt => TimeSpan.FromSeconds(Math.Pow(_retryInterval, attempt)), // Exponential backoff
                         onRetry: (response, timespan, retryCount, context) =>
                         {
+                            Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.WriteLine($"Retry {retryCount} after {timespan.Seconds} seconds due to: {response.Exception?.Message ?? response.Result.ReasonPhrase}");
+                            Console.ForegroundColor = ConsoleColor.White;
                         });
 
             return retryPolicy;
@@ -97,7 +119,9 @@ namespace PollyResilienceAndTransientFaultHandling.Controllers
             var response = await new HttpClient().GetAsync("https://localhost:7118/HttpStatusCode/ok");
             if (!response.IsSuccessStatusCode)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Request failed with status code {response.ReasonPhrase}");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             return response;
         }
@@ -107,7 +131,9 @@ namespace PollyResilienceAndTransientFaultHandling.Controllers
             var response = await new HttpClient().GetAsync("https://localhost:7118/HttpStatusCode/serviceunavailable");
             if (!response.IsSuccessStatusCode)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Request failed with status code {response.ReasonPhrase}");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             return response;
         }
@@ -116,11 +142,15 @@ namespace PollyResilienceAndTransientFaultHandling.Controllers
         {
             if (result.IsSuccessStatusCode)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Request succeeded");
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Request failed after retries");
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
     }
