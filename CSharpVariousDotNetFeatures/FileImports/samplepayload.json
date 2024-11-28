@@ -1,0 +1,26 @@
+{
+  "id": 12345,
+  "name": "John Doe",
+  "email": "johndoe@example.com",
+  "age": 30,
+  "address": {
+    "street": "123 Elm St.",
+    "city": "Springfield",
+    "postal_code": "98765"
+  },
+  "is_active": true,
+  "signup_date": "2023-06-15T08:30:00",
+  "last_login": "2024-11-20T15:45:00",
+  "subscription_level": "premium",
+  "preferred_language": "English",
+  "contact_numbers": [
+    {
+      "type": "home",
+      "number": "+1-555-1234"
+    },
+    {
+      "type": "mobile",
+      "number": "+1-555-5678"
+    }
+  ]
+}
