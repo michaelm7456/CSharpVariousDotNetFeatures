@@ -1,4 +1,5 @@
 ﻿using FileImports;
+using System.Text;
 using System.Text.Json;
 
 var fileName = "samplepayload.json";
@@ -8,6 +9,11 @@ Console.ForegroundColor = ConsoleColor.Cyan;
 Console.WriteLine($"Importing sample payload at path: CSharpVariousDotNetFeatures\\CSharpVariousDotNetFeatures\\FileImports\\samplepayload.json");
 
 var payload = File.ReadAllText(payloadFilePath);
+
+var serializedForm = JsonSerializer.Serialize(payload);
+
+var content = new StringContent(payload, Encoding.UTF8, "application/json");
+
 var dto = JsonSerializer.Deserialize<CustomerDTO>(payload);
 
 Console.WriteLine();
