@@ -18,7 +18,7 @@ $dacpacPoWPath = Join-Path $dacpacOutputDir $dacpacProj3FileName
 $targetServer = "Michael-Laptop"  # Local SQL Server instance
 $targetProj1Database = "Database1"  # Target database name
 $targetProj2Database = "Database2"  # Target database name
-$targetPro3Database = "Database3"  # Target database name
+$targetProj3Database = "Database3"  # Target database name
 
 # # Define SqlPackage publish options
 $publishOptions = "/p:CreateNewDatabase=False"  # Optionally allow database creation if it doesn't exist
