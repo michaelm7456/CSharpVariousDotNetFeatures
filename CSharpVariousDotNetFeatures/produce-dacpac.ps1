@@ -10,9 +10,9 @@ $dacpacOutputDir = "C:\DatabaseRepo\SSDT\MSBuild\"
 $dacpacProj1FileName = "Project1.dacpac"
 $dacpacProj2FileName = "Project2.dacpac"
 $dacpacProj3FileName = "Project3.dacpac"
-$dacpacPowCentralPath = Join-Path $dacpacOutputDir $dacpacProj1FileName
-$dacpacPoWCredentialsPath = Join-Path $dacpacOutputDir $dacpacProj2FileName
-$dacpacPoWPath = Join-Path $dacpacOutputDir $dacpacProj3FileName
+$dacpacProj1Path = Join-Path $dacpacOutputDir $dacpacProj1FileName
+$dacpacProj2Path = Join-Path $dacpacOutputDir $dacpacProj2FileName
+$dacpacProj3Path = Join-Path $dacpacOutputDir $dacpacProj3FileName
 
 # # SQL Server instance and database configuration
 $targetServer = "Michael-Laptop"  # Local SQL Server instance
@@ -29,7 +29,7 @@ function Build-SqlProj1 {
     $buildCommand = "& `"$msbuildPath`" `"$sqlProj1Path`" /p:Configuration=Debug"
     Invoke-Expression $buildCommand
     
-    if (Test-Path $dacpacPowCentralPath) {
+    if (Test-Path $dacpacProj1FileName) {
         Write-Host "Build successful! DACPAC located at $dacpacPath"
     } else {
         Write-Error "Build failed or DACPAC not found!"
@@ -42,7 +42,7 @@ function Build-SqlProj2 {
     $buildCommand = "& `"$msbuildPath`" `"$sqlProj2Path`" /p:Configuration=Debug"
     Invoke-Expression $buildCommand
     
-    if (Test-Path $dacpacPoWCredentialsPath) {
+    if (Test-Path $dacpacProj2FileName) {
         Write-Host "Build successful! DACPAC located at $dacpacPath"
     } else {
         Write-Error "Build failed or DACPAC not found!"
@@ -55,7 +55,7 @@ function Build-SqlProj3 {
     $buildCommand = "& `"$msbuildPath`" `"$sqlProj3Path`" /p:Configuration=Debug"
     Invoke-Expression $buildCommand
     
-    if (Test-Path $dacpacPoWPath) {
+    if (Test-Path $dacpacProj3FileName) {
         Write-Host "Build successful! DACPAC located at $dacpacPath"
     } else {
         Write-Error "Build failed or DACPAC not found!"
@@ -66,7 +66,7 @@ function Build-SqlProj3 {
 # Function to publish the DACPAC to the local SQL Server instance
 function Publish-DacpacProj1 {
     Write-Host "Publishing DACPAC to SQL Server..."
-    $publishCommand = "& `"$sqlPackagePath`" /Action:Publish /SourceFile:`"$dacpacPowCentralPath`" /TargetServerName:`"$targetServer`" /TargetDatabaseName:`"$targetProj1Database`" $publishOptions /ttsc:True "
+    $publishCommand = "& `"$sqlPackagePath`" /Action:Publish /SourceFile:`"$dacpacProj1Path`" /TargetServerName:`"$targetServer`" /TargetDatabaseName:`"$targetProj1Database`" $publishOptions /ttsc:True "
     Invoke-Expression $publishCommand
 
     if ($LASTEXITCODE -eq 0) {
@@ -79,7 +79,7 @@ function Publish-DacpacProj1 {
 
 function Publish-DacpacProj2 {
     Write-Host "Publishing DACPAC to SQL Server..."
-    $publishCommand = "& `"$sqlPackagePath`" /Action:Publish /SourceFile:`"$dacpacPoWCredentialsPath`" /TargetServerName:`"$targetServer`" /TargetDatabaseName:`"$targetProj2Database`" $publishOptions /p:BlockOnPossibleDataLoss=False /ttsc:True "
+    $publishCommand = "& `"$sqlPackagePath`" /Action:Publish /SourceFile:`"$dacpacProj2Path`" /TargetServerName:`"$targetServer`" /TargetDatabaseName:`"$targetProj2Database`" $publishOptions /p:BlockOnPossibleDataLoss=False /ttsc:True "
     Invoke-Expression $publishCommand
 
     if ($LASTEXITCODE -eq 0) {
@@ -92,7 +92,7 @@ function Publish-DacpacProj2 {
 
 function Publish-DacpacProj3 {
     write-host "publishing dacpac to sql server..."
-    $publishcommand = "& `"$sqlpackagepath`" /action:publish /sourcefile:`"$dacpacPoWPath`" /targetservername:`"$targetserver`" /targetdatabasename:`"$targetProj3Database`" $publishoptions  /p:BlockOnPossibleDataLoss=False /ttsc:true "
+    $publishcommand = "& `"$sqlpackagepath`" /action:publish /sourcefile:`"$dacpacProj3Path`" /targetservername:`"$targetserver`" /targetdatabasename:`"$targetProj3Database`" $publishoptions  /p:BlockOnPossibleDataLoss=False /ttsc:true "
     invoke-expression $publishcommand
 
     if ($lastexitcode -eq 0) {
